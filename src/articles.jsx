@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect} from 'react';
 import './articles.css'; // Import your header bar CSS file
-import Articles from '../mock_data/news-article-MOCK_DATA.json';
+// import Articles from '../mock_data/news-article-MOCK_DATA.json';
 import Popup from 'reactjs-popup';
 import iconSquare6x6 from '../icon_images/icon-square3x3.png'
 import { BsPersonCircle } from "react-icons/bs";
@@ -10,6 +10,7 @@ import { AppContext } from './AppState';
 
 function ArticlePosts() {
   const {checkedIds, setCheckedIds} = useContext(AppContext);
+  const {articles} = useContext(AppContext);
 
   const handleCheckboxChange = (id) => {
     const isChecked = checkedIds.includes(id);
@@ -22,16 +23,15 @@ function ArticlePosts() {
   };
 
   const deleteSingleArticle = (id) => {
-    const newArticles = Articles.filter((article) => article.id !== id);
-    Articles.splice(0, Articles.length, ...newArticles);
+    const newArticles = articles.filter((article) => article.id !== id);
+    articles.splice(0, articles.length, ...newArticles);
     setCheckedIds(checkedIds.filter((checkedId) => checkedId !== id));
   };
 
-  // console.log(Articles);
-  
+  // fetchData()
   return (
     <div>
-      {Articles.map((article) => (
+      {articles.map((article) => (
           <div className='news-articles-cards' key={article.id}>
             <ul>
               <div className='icon-container'>
