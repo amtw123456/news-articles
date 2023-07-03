@@ -9,6 +9,7 @@ function NewsArticles() {
         <div className="news-articles-heading">News Articles</div>
         <Navbar />
         <ArticlesPosts />
+        
       </div>
     )
   }
