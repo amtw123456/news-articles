@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import './articles.css'; // Import your header bar CSS file
 import Articles from '../mock_data/news-article-MOCK_DATA.json';
 import Popup from 'reactjs-popup';
+import iconSquare6x6 from '../icon_images/icon-square3x3.png'
 import { BsPersonCircle } from "react-icons/bs";
 import { MdDateRange } from "react-icons/md";
 import { AiFillEye } from "react-icons/ai";
@@ -34,7 +35,7 @@ function ArticlePosts() {
           <div className='news-articles-cards' key={article.id}>
             <ul>
               <div className='icon-container'>
-                <img src={'./icon_images/icon-square3x3.png'} alt="Icon" className="icon-square3x3-size" />
+                <img src={iconSquare6x6} alt="Icon" className="icon-square3x3-size" />
               </div>
               <input 
                 type="checkbox"
