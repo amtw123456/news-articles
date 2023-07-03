@@ -1,14 +1,13 @@
-import { useState } from 'react'
-import NewsArticles from './newsArticles.jsx'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
+import NewsArticles from './newsArticles.jsx';
+import { AppStateProvider } from './AppState';
 import './App.css'
 
 function App() {
   return (
-    <>
+    <AppStateProvider>
       <NewsArticles />
-    </>
+    </AppStateProvider>
   )
 }
 

@@ -1,13 +1,32 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import './articles.css'; // Import your header bar CSS file
 import Articles from '../mock_data/news-article-MOCK_DATA.json';
 import Popup from 'reactjs-popup';
 import { BsPersonCircle } from "react-icons/bs";
 import { MdDateRange } from "react-icons/md";
 import { AiFillEye } from "react-icons/ai";
-
+import { AppContext } from './AppState';
 
 function ArticlePosts() {
+  const {checkedIds, setCheckedIds} = useContext(AppContext);
+
+  const handleCheckboxChange = (id) => {
+    const isChecked = checkedIds.includes(id);
+
+    if (isChecked) {
+      setCheckedIds(checkedIds.filter((checkedId) => checkedId !== id));
+    } else {
+      setCheckedIds([...checkedIds, id]);
+    }
+  };
+
+  const deleteSingleArticle = (id) => {
+    const newArticles = Articles.filter((article) => article.id !== id);
+    Articles.splice(0, Articles.length, ...newArticles);
+    setCheckedIds(checkedIds.filter((checkedId) => checkedId !== id));
+  };
+
+  // console.log(Articles);
   
   return (
     <div>
@@ -17,7 +36,13 @@ function ArticlePosts() {
               <div className='icon-container'>
                 <img src={'./icon_images/icon-square3x3.png'} alt="Icon" className="icon-square3x3-size" />
               </div>
-              <input type="checkbox" className="card-checkbox-input" />
+              <input 
+                type="checkbox"
+                id={article.id}
+                checked={checkedIds.includes(article.id)}
+                onChange={() => handleCheckboxChange(article.id)}
+                className="card-checkbox-input" 
+              />
               <div className='content-title-style'>
                 <div className='title-container'>
                   {article.title}
@@ -85,16 +110,15 @@ function ArticlePosts() {
                                       </div>
                                         <ul className='popup-publish-delete-button-container'>
                                           <li>
-                                            <button onClick = {() => close()} className="publish-button">
+                                            <button onClick = {""} className="articles-publish-button">
                                               Publish
                                             </button>
                                           </li>
                                           <li>
-                                            <button onClick = {() => close()} className="delete-button">
+                                            <button onClick = {() => deleteSingleArticle(article.id)} className="articles-delete-button">
                                              Delete
                                             </button>
                                           </li>
-                                          
                                         </ul>
                                   </div>
                               )

@@ -64,6 +64,44 @@ input[type="text"]{
     border-radius: 5px;
 }
 
+.navbar-publish-button{
+    font-size: 14px;
+    color: rgb(3, 206, 241);
+    margin: 5px;
+    padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #26ffff3f;
+    border: 1px solid #00ffff;
+    border-radius: 5px;
+}
+
+.navbar-publish-button:hover {
+    background-color: #1161613d; /* Change the color on hover */
+    border: 1px solid #00ffff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.navbar-delete-button{
+    font-size: 14px;
+    color: rgb(241, 3, 3);
+    margin: 5px;
+    padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #ff5151;
+    background-color: #f71b4a3d;
+    border-radius: 5px;
+    
+}
+
+.navbar-delete-button:hover {
+    background-color: #a04b5e3f; /* Change the color on hover */
+    border: 1px solid #ff5151;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 
 
