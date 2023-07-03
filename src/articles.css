@@ -68,7 +68,6 @@
     margin: 0px;
     padding: 0px;
     border: 2px solid #f2f4f7;
-    margin-left: 5px;
     width: 80px;
     border: none;
     outline: none;
@@ -95,26 +94,19 @@
 .icon-view-container{
     padding-top: 2px;
     color: #4c55fd;
-
+    padding-left: 5px;
+    padding-right: 0px;
 }
-
-.icon-view-container:hover{
-    padding-top: 2px;
-    color: #727275;
-}
-
 
 .icon-view-text-container{
-    padding-top: 0px;
     font-weight: 200;
     color: #646cff;
     
 }
 
 .icon-view-text-container:hover{
-    padding-top: 0px;
     font-weight: 200;
-    color: #727275;
+    text-decoration: underline;
 }
 
 .icon-person-circle-container{
@@ -159,7 +151,7 @@
     font-size: 20px;
     color: #7cc59a;
     margin: 5px;
-    margin-top: 5px;
+    margin-top: 10px;
     margin-right: 15px;
     padding: 3px;
     padding-right: 10px;
@@ -168,4 +160,102 @@
     border: 1px solid #b6c8c1;
     border-radius: 10px;
     font-weight: 600;
+}
+
+.modal {
+    background-color: #fff;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    margin-top: 120px;
+    margin-right: 350px;
+    margin-left: 350px;
+    border-radius: 8px;
+    outline: none;
+  }
+
+.popup-content-container{
+    outline-style: dashed;
+}
+
+.popup-title-container{
+    padding-top: 35px;
+    font-size: 16px;
+    color: rgb(3, 0, 0);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 800;
+}
+
+.popup-exit-container{
+    padding-top: 35px;
+    margin-left: auto;
+
+}
+
+.popup-exit-container button{
+    font-size: 18px;
+    padding-top: 0px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 5px;
+    background-color: #f2f4f7;
+    border-radius: 20px;
+    
+}
+
+.popup-exit-container button:focus{
+    outline: none;
+}
+
+.popup-title-header ul{
+    padding: 0px;
+    margin: 0px;
+    
+}
+
+.popup-author-date-textinfo{
+    color: #646b70;
+    font-weight: 700;
+    padding-bottom: 8px;
+}
+
+.popup-content{
+    padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 35px;
+    font-size: 12px;
+}
+
+.popup-publish-delete-button-container{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    
+}
+
+.popup-publish-delete-button-container li{
+    margin: 10px;
+    
+}
+
+.publish-button{
+    background-color: #1bc2e4;
+    color: #ebf9f2;
+}
+
+.publish-button:hover{
+    background-color: #2f9fb6;
+    border: none;
+    color: #ebf9f2;
+}
+
+.delete-button{
+    background-color: #f13231;
+    color: #ebf9f2;
+}
+
+.delete-button:hover{
+    background-color: #b4554e;
+    border: none;
+    color: #ebf9f2;
 }

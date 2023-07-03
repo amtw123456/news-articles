@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './articles.css'; // Import your header bar CSS file
 import Articles from '../mock_data/news-article-MOCK_DATA.json';
+import Popup from 'reactjs-popup';
 import { BsPersonCircle } from "react-icons/bs";
 import { MdDateRange } from "react-icons/md";
 import { AiFillEye } from "react-icons/ai";
@@ -42,21 +43,65 @@ function ArticlePosts() {
                       {article.content.substring(0,80)}
                       ....
                     </div>
-                    <div className='read-article-button'>
-                      <button onclick="changeColor()">
-                        <ul>
-                          <div className='icon-view-container'>
-                            <AiFillEye />
-                          </div>
-                          <a className='icon-view-text-container'>
-                            Read Full
-                          </a>
-                        </ul>                        
-                      </button>
+                    <div className='icon-view-container'>
+                      <AiFillEye />
                     </div>
-                    
+                    <div className='read-article-button'>
+                        <Popup trigger=
+                          {
+                            <button onclick="">
+                              <ul >
+                                <a className='icon-view-text-container'>
+                                  Read Full
+                                </a>
+                              </ul>                        
+                            </button>
+                          }
+                          modal nested>
+                          {
+                              close => (
+                                  <div className='modal'>
+                                      <div className='content'>
+                                        <div className='popup-title-header'>
+                                          <ul>
+                                            <div className='popup-title-container'>
+                                              {article.title}
+                                            </div>
+                                            <div className='popup-exit-container'>
+                                              <button onClick={() => close()} className='popup-exit-container'>  
+                                               x
+                                              </button>
+                                            </div>
+                                          </ul>
+                                        </div>
+                                        <div className='popup-author-date-textinfo'>
+                                          <p>{article.author} | {article.date}</p>
+                                        </div>
+                                        <div className='popup-content-container'>
+                                          <div className='popup-content'>
+                                            {article.content}
+                                          </div>                                          
+                                        </div>
+                                      </div>
+                                        <ul className='popup-publish-delete-button-container'>
+                                          <li>
+                                            <button onClick = {() => close()} className="publish-button">
+                                              Publish
+                                            </button>
+                                          </li>
+                                          <li>
+                                            <button onClick = {() => close()} className="delete-button">
+                                             Delete
+                                            </button>
+                                          </li>
+                                          
+                                        </ul>
+                                  </div>
+                              )
+                          }
+                      </Popup> 
+                    </div>
                 </ul>
-                
               </div>
               <div className='content-tags-style'>
                 <ul>
