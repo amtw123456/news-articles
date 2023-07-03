@@ -1,0 +1,79 @@
+.header-bar {
+    /* background-color: #240101; */ 
+    /* color: #e6e65a; */
+    /* padding: 1rem; */
+    /* width: 100%; */
+    /* align-items: center; */
+    /* justify-content: space-between; */
+  }
+
+ul {
+    list-style-type: none;
+    background-color: #ffffff;
+    display: flex;
+    width: 99%;
+    height: 50px;
+    padding: 0px;
+    margin: 0px;
+    
+}
+
+span {
+    font-size: 20px;
+}
+
+.publish-span {
+    font-size: 20px;
+    color: rgb(3, 206, 241);
+    margin: 5px;
+    padding: 3px;
+    background-color: #26ffff3f;
+    border: 1px solid #00ffff;
+    border-radius: 5px;
+
+  }
+  
+.publish-span:hover {
+    background-color: #1161613d; /* Change the color on hover */
+    border: 1px solid #1161613d;
+    border-radius: 5px;
+}
+  
+.delete-span {
+    font-size: 20px;
+    color: rgb(241, 3, 3);
+    margin: 5px;
+    padding: 3px;
+    border: 1px solid #ff5151;
+    background-color: #f71b4a3d;
+    border-radius: 5px;
+}
+
+.delete-span:hover {
+    background-color: #a04b5e3f; /* Change the color on hover */
+    border: 1px solid #a04b5e3f;
+    border-radius: 5px;
+}
+
+.checkbox-input {
+    color: white;
+    margin-top: 5px;
+    margin-left: 0px;
+}
+
+.search-bar {
+    margin-left: 50.75%;
+    width: 1255px;
+}
+
+input[type="text"]{
+    padding-left:20px;
+    border: 1px solid #bbb1b1;
+    border-radius: 5px;
+}
+
+
+
+
+
+  

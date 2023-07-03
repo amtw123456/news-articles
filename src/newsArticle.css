@@ -1,6 +1,15 @@
 .news-articles-container {
-  position: static;
-  margin: 15px;
-  border: 1px solid #050800;
+  position: fixed;
+  top: 0;
+  width: 98.7%;
+  padding: 15px;
+
+}
+
+.news-articles-heading{
+  padding: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 5px;
 }
 
