@@ -3,6 +3,8 @@
   top: 0;
   width: 98.7%;
   padding: 15px;
+  overflow: auto;
+  height: 100vh;
 
 }
 

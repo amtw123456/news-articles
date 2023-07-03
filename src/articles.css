@@ -1,0 +1,94 @@
+.news-articles-cards{
+    width: 99%;
+    height: 120px;
+    margin-top: 5px;
+    background-color: #f2f4f7;
+    border: 1px solid #f2f4f7;
+    border-radius: 5px;
+}
+
+.icon-container{
+    padding-top: 15px;
+    padding-left: 5px;
+    padding-bottom: 0px;
+    height: 100%;
+    background-color: #f2f4f7;
+}
+
+.icon-square3x3-size{
+    width: 15px;
+    background-color: #f2f4f7;
+}
+
+.icon-square3x3-size:hover{
+    width: 15px;
+    cursor: pointer;
+    background-color: #f2f4f7;
+}
+
+.card-checkbox-input{
+    margin-left: 5px;
+    background-color: #f2f4f7;
+}
+
+.content-title-style {
+    width: 80%;
+    white-space: 'nowrap';
+    padding-top: 13px;
+    padding-left:8px;
+    height: 10px;
+    background-color: #f2f4f7;
+}
+
+.author-container{
+    background-color: #f2f4f7;
+}
+
+.content-tags-style {
+    margin-left: 10%;
+    margin-right: 0px;
+    background-color: #f2f4f7;
+    
+}
+
+.icon-person-circle-container{
+    padding-top: 2px;
+    padding-right: 5px;
+    background-color: #f2f4f7;
+}
+
+.icon-date-container{
+    padding-top: 2px;
+    padding-right: 5px;
+    background-color: #f2f4f7;
+}
+
+
+.author-container {
+    background-color: #f2f4f7;
+    height: 20px;
+}
+
+.date-container {
+    background-color: #f2f4f7;
+    height: 20px;
+}
+
+ul{
+    background-color: #f2f4f7;
+}
+
+.tags-content {
+    padding-left:5px;
+    padding-right:30px;
+    padding-top: 5px;
+    font-size: 20px;
+    color: #7cc59a;
+    margin: 5px;
+    margin-top: 10px;
+    margin-right: 15px;
+    padding: 3px;
+    background-color: #ebf9f2;
+    border: 1px solid #b6c8c1;
+    border-radius: 5px;
+}
