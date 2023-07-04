@@ -23,7 +23,7 @@ function ArticlePosts() {
   };
 
   const deleteSingleArticle = async  (id) => {
-    const response = await fetch(`https://news-articles-backend-server.vercel.app/get-all-articles/delete-article/${id}/`, {
+    const response = await fetch('https://news-articles-backend-server.vercel.app/delete-article/'+id+'/', {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
