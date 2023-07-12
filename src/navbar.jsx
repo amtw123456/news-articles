@@ -21,24 +21,13 @@ function HeaderBar() {
     }
   };
 
-  const handleDeleteAllChecked = async (checkedIds) =>{
-    const response = await fetch('http://127.0.0.1:8000/delete-multiple-articles/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ids: checkedIds }),
-    });
-
-    if (response.ok) {
-      window.location.reload(false);
-    } else {
-      console.error('Failed to delete articles.');
-    }
+  const handleDeleteAllChecked = () =>{
+    const newArticles = articles.filter((article) => !checkedIds.includes(article.id));
+    articles.splice(0, articles.length, ...newArticles);
+    setCheckedIds([]);
   }
 
   const fetchData = async () => {
-    console.log("ran")
     try {
       const response = await fetch('http://127.0.0.1:8000/get-all-articles');
       const json_response = await response.json();
@@ -58,7 +47,7 @@ function HeaderBar() {
             onChange={handleCheckboxChange}
           />
           <button className="navbar-publish-button">Publish</button>
-          <button onClick={() => handleDeleteAllChecked(checkedIds)} className="navbar-delete-button">Delete</button>
+          <button onClick={() => handleDeleteAllChecked()} className="navbar-delete-button">Delete</button>
           <input type="text" className="search-bar" placeholder="Search..."/>
       </ul>  
   );

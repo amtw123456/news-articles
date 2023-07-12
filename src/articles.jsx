@@ -22,19 +22,10 @@ function ArticlePosts() {
     }
   };
 
-  const deleteSingleArticle = async  (id) => {
-    const response = await fetch(`http://127.0.0.1:8000/delete-article/${id}/`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (response.ok) {
-      window.location.reload(false);
-    } else {
-      console.error('Failed to delete the article.');
-    }
+  const deleteSingleArticle = (id) => {
+    const newArticles = articles.filter((article) => article.id !== id);
+    articles.splice(0, articles.length, ...newArticles);
+    setCheckedIds(checkedIds.filter((checkedId) => checkedId !== id));
   };
 
   // fetchData()
