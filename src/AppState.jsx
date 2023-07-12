@@ -4,10 +4,9 @@ export const AppContext = createContext();
 
 export const AppStateProvider = ({ children }) => {
   const [checkedIds, setCheckedIds] = useState([]);
-  const [articles, setArticles] = useState([]);
 
   return (
-    <AppContext.Provider value={{ checkedIds, setCheckedIds, articles, setArticles }}>
+    <AppContext.Provider value={{ checkedIds, setCheckedIds }}>
       {children}
     </AppContext.Provider>
   );
