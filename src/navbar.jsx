@@ -22,7 +22,7 @@ function HeaderBar() {
   };
 
   const handleDeleteAllChecked = async (checkedIds) =>{
-    const response = await fetch('https://news-articles-backend-server.vercel.app/delete-multiple-articles/', {
+    const response = await fetch('http://127.0.0.1:8000/delete-multiple-articles/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ function HeaderBar() {
   const fetchData = async () => {
     console.log("ran")
     try {
-      const response = await fetch('https://news-articles-backend-server.vercel.app/get-all-articles');
+      const response = await fetch('http://127.0.0.1:8000/get-all-articles');
       const json_response = await response.json();
       setArticles(json_response);
 
