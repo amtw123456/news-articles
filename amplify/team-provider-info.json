@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifyc68f6b005f804-staging-74802-authRole",
+      "UnauthRoleArn": "arn:aws:iam::535624439432:role/amplify-amplifyc68f6b005f804-staging-74802-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::535624439432:role/amplify-amplifyc68f6b005f804-staging-74802-authRole",
+      "Region": "ap-southeast-2",
+      "DeploymentBucketName": "amplify-amplifyc68f6b005f804-staging-74802-deployment",
+      "UnauthRoleName": "amplify-amplifyc68f6b005f804-staging-74802-unauthRole",
+      "StackName": "amplify-amplifyc68f6b005f804-staging-74802",
+      "StackId": "arn:aws:cloudformation:ap-southeast-2:535624439432:stack/amplify-amplifyc68f6b005f804-staging-74802/c2f934b0-221a-11ee-83c3-0a28da8e14b0",
+      "AmplifyAppId": "d22lb4c7zr1ouu"
+    },
+    "categories": {
+      "auth": {
+        "newsarticleseb442703": {}
+      }
+    }
+  }
+}
