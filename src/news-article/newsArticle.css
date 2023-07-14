@@ -1,0 +1,18 @@
+.news-articles-container {
+  position: fixed;
+  top: 0;
+  width: 98%;
+  padding: 15px;
+  overflow: auto;
+  height: 100vh;
+
+}
+
+.news-articles-heading{
+  padding: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+
