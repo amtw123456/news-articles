@@ -10,7 +10,7 @@ import {
   Card,
 } from "@aws-amplify/ui-react";
 
-function App() {
+function App({signOut}) {
   return (
     <div className="App">
       <header className="App-header">
