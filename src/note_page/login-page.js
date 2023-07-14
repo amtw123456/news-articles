@@ -18,6 +18,8 @@ import {
   deleteNote as deleteNoteMutation,
 } from "../graphql/mutations";
 
+import NewsArticle from "../news-article/";
+
 const LoginPage = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
 
@@ -68,7 +70,7 @@ const LoginPage = ({ signOut }) => {
     });
   }
 
-  return (
+  return (    
     <View className="App">
       <Heading level={1}>My Notes App</Heading>
       <View as="form" margin="3rem 0" onSubmit={createNote}>

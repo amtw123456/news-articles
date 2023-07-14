@@ -7,8 +7,9 @@ const Routes = () => {
     return (
         <Router>
             <Switch>
-                <Route exact path="/" component={Notepage} />
-                <Route exact path="/news-article" component={NewsArticle} />
+                {/* <Route exact path="/" component={Notepage} /> */}
+                <Route exact path="/" component={NewsArticle} />
+                {/* <Route exact path="/news-article" component={NewsArticle} /> */}
             </Switch>
         </Router>
     );
