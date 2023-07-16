@@ -18,7 +18,7 @@ function NewsArticles({ signOut }) {
       <div className="news-articles-container"> 
         <div class="flex items-center">
           <div class="text-purple-400">News Article</div>
-          <button class="ml-4 hover bg-sky-500 text-white hover:bg-white hover:text-black" onClick={signOut}>Sign Out </button>
+          <button class="ml-4 hover bg-sky-500 text-white hover:bg-white hover:text-black p-2" onClick={signOut}>Sign Out </button>
         </div>
         <Navbar />
         <ArticlesPosts />
