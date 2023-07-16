@@ -15,10 +15,10 @@ import {
 
 function NewsArticles({ signOut }) {
     return (
-      <div className="news-articles-container">
+      <div className="news-articles-container"> 
         <div class="flex items-center">
-          <div class="mr-4">Text</div>
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Button</button>
+          <div class="text-purple-400">News Article</div>
+          <button class="ml-4 hover bg-sky-500 text-white hover:bg-white hover:text-black" onClick={signOut}>Sign Out </button>
         </div>
         <Navbar />
         <ArticlesPosts />
