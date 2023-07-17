@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect} from 'react';
 import './articles.css'; // Import your header bar CSS file
 // import Articles from '../mock_data/news-article-MOCK_DATA.json';
 import Popup from 'reactjs-popup';
+import Articles from './MOCK-DATA.json'
 import iconSquare6x6 from '../icon_images/icon-square3x3.png'
 import { BsPersonCircle } from "react-icons/bs";
 import { MdDateRange } from "react-icons/md";
@@ -23,24 +24,15 @@ function ArticlePosts() {
   };
 
   const deleteSingleArticle = async  (id) => {
-    const response = await fetch('https://news-articles-backend-server.vercel.app/delete-article/'+id+'/', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (response.ok) {
-      window.location.reload(false);
-    } else {
-      console.error('Failed to delete the article.');
-    }
+    const newArticles = Articles.filter((article) => article.id !== id);
+    Articles.splice(0, Articles.length, ...newArticles);
+    setCheckedIds(checkedIds.filter((checkedId) => checkedId !== id));
   };
 
   // fetchData()
   return (
     <div>
-      {articles.map((article) => (
+      {Articles.map((article) => (
           <div className='news-articles-cards' key={article.id}>
             <ul>
               <div className='icon-container'>
