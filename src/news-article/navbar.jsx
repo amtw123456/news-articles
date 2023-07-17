@@ -7,7 +7,7 @@ import './navbar.css'; // Import your header bar CSS file
 import { API, Storage } from 'aws-amplify';
 import {
   createArticle as createArticleMutation,
-  deleteNote as deleteNoteMutation
+  deleteArticle as deleteArticleMutation
 } from "../graphql/mutations";
 import { Auth } from 'aws-amplify';
 
@@ -21,10 +21,6 @@ function HeaderBar() {
   useEffect(() => {
     getCurrentUser()
   }, []);
-
-  const handleAuthorChange = (e) => {
-    setAuthor(e.target.value);
-  };
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -43,11 +39,29 @@ function HeaderBar() {
     }
   };
 
-  const handleDeleteAllChecked = () =>{
-    const newArticles = Articles.filter((article) => !checkedIds.includes(article.id));
-    Articles.splice(0, Articles.length, ...newArticles);
-    setCheckedIds([]);
+  
+  async function handleDeleteAllChecked(){
+    try {
+      // Delete articles from the API
+      await Promise.all(
+        checkedIds.map(async (id) => {
+          await API.graphql({
+            query: deleteArticleMutation,
+            variables: { input: { id } },
+          });
+        })
+      );
+  
+      // Update the local state
+      const newArticles = Articles.filter((article) => !checkedIds.includes(article.id));
+      setArticles(newArticles);
+      setCheckedIds([]);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
   }
+
 
   async function createArticle(event) {
     const currentDate = new Date().toISOString().substring(0, 10);
