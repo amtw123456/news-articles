@@ -4,15 +4,23 @@ import Popup from 'reactjs-popup';
 import { AppContext } from './AppState';
 import './navbar.css'; // Import your header bar CSS file
 
+import { API, Storage } from 'aws-amplify';
+import {
+  createArticle as createArticleMutation,
+  deleteNote as deleteNoteMutation
+} from "../graphql/mutations";
+import { Auth } from 'aws-amplify';
 
 function HeaderBar() {
   const {checkedIds, setCheckedIds} = useContext(AppContext);
-  console.log('Checked IDs:', checkedIds);
-  const [isOpen, setIsOpen] = useState(false);
-
+  const [articles, setArticles] = useState([]);
   const [author, setAuthor] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
+  useEffect(() => {
+    getCurrentUser()
+  }, []);
 
   const handleAuthorChange = (e) => {
     setAuthor(e.target.value);
@@ -41,16 +49,36 @@ function HeaderBar() {
     setCheckedIds([]);
   }
 
-  const pushDataOnClick = () => {
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth() + 1; // Months are zero-indexed
-    const day = currentDate.getDate();
-    console.log(`${year}/${month}/${day}`);
-    console.log(author)
-    console.log(title)
-    console.log(content)
+  async function createArticle(event) {
+    const currentDate = new Date().toISOString().substring(0, 10);
+    const formData = document.getElementById("articleForm");
+    const form = new FormData(formData);
+    const authenticatedUsername = await getCurrentUser();
+    const data = {
+      author: authenticatedUsername,
+      title: form.get("title"),
+      content: form.get("content"),
+      date: currentDate,
+
+    };
+    await API.graphql({
+      query: createArticleMutation,
+      variables: { input: data },
+    });
+    // fetchNotes();
+    // event.target.reset();
   }
+
+  async function getCurrentUser() {
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      return user.username;
+    } catch (err) {
+      console.log(err);
+      throw err; // Rethrow the error to handle it outside the function if needed
+    }
+  }
+  
 
   return (
       <ul>
@@ -74,22 +102,13 @@ function HeaderBar() {
                                   {/* <button className="close-button" onClick={onClose}>
                                     Close
                                   </button> */}
-                                  <form onSubmit={() => {}} >
-                                    <div class="flex mb-3">
-                                      <label class="mr-auto" htmlFor="author">Author:</label>
-                                      <textarea
-                                        class="ml-2 border h-5"
-                                        id="content"
-                                        value={author}
-                                        onChange={handleAuthorChange}
-                                      >
-                                      </textarea>
-                                    </div>
+                                  <form id="articleForm" onSubmit={() => {}} >
                                     <div class="flex mb-3">
                                       <label class="mr-auto" htmlFor="title">Title:</label>
                                       <textarea
+                                        name="title"
                                         class="ml-2 border h-5"
-                                        id="content"
+                                        id="title"
                                         value={title}
                                         onChange={handleTitleChange}
                                       >
@@ -99,6 +118,7 @@ function HeaderBar() {
                                       <label class="mr-auto mx-auto block text-center" htmlFor="content">Content</label>
                                       <div class="flex mb-3">
                                         <textarea
+                                          name="content"
                                           class="ml-2 border h-40 w-full"
                                           id="content"
                                           value={content}
@@ -107,10 +127,10 @@ function HeaderBar() {
                                         </textarea>
                                       </div>
                                     </div>
+                                    <button onClick={createArticle} class="bg-violet-700 p-5 text-white py-2 px-4 rounded mx-auto mt-4 block">
+                                      Publish
+                                    </button>
                                   </form>
-                                  <button onClick={pushDataOnClick} class="bg-violet-700 p-5 text-white py-2 px-4 rounded mx-auto mt-4 block">
-                                    Publish
-                                  </button>
                                 </div>
                             </div>
                         )

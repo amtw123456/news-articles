@@ -1,4 +1,5 @@
 export const AppRoutes = {
   NOTEPAGE: "/note-page",
-  NEWSARTICLE: "/news-article"
+  NEWSARTICLE: "/news-article",
+  TESTPAGE: "test-page"
 };

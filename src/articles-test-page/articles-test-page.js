@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./login-page.css";
+import "./articles-test-page.css";
 import "@aws-amplify/ui-react/styles.css";
 import { API, Storage } from 'aws-amplify';
+
 import {
   Button,
   Flex,
@@ -13,58 +14,43 @@ import {
   withAuthenticator,
 } from '@aws-amplify/ui-react';
 
-import { listNotes } from "../graphql/queries";
+import { listArticles } from "../graphql/queries";
 import {
-  createNote as createNoteMutation,
-  deleteNote as deleteNoteMutation,
+  createArticle as createArticleMutation,
+  deleteNote as deleteNoteMutation
 } from "../graphql/mutations";
 
-import NewsArticle from "../news-article/";
-
 const LoginPage = ({ signOut }) => {
+  const [articles, setArticles] = useState([]);
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    fetchNotes();
+    fetchArticles();
   }, []);
 
-  async function fetchNotes() {
-    const apiData = await API.graphql({ query: listNotes });
-    const notesFromAPI = apiData.data.listNotes.items;
-    setNotes(notesFromAPI);
+  async function fetchArticles() {
+    const apiData = await API.graphql({ query: listArticles });
+    const ArticlesFromAPI = apiData.data.listArticles.items;
+    setArticles(ArticlesFromAPI);
   }
 
-  async function fetchNotes() {
-    const apiData = await API.graphql({ query: listNotes });
-    const notesFromAPI = apiData.data.listNotes.items;
-    await Promise.all(
-      notesFromAPI.map(async (note) => {
-        if (note.image) {
-          const url = await Storage.get(note.name);
-          note.image = url;
-        }
-        return note;
-      })
-    );
-    setNotes(notesFromAPI);
-  }
-
-  async function createNote(event) {
+  async function createArticle(event) {
     event.preventDefault();
+    const currentDate = new Date().toISOString().substring(0, 10);
     const form = new FormData(event.target);
-    const image = form.get("image");
     const data = {
-      name: form.get("name"),
-      description: form.get("description"),
-      image: image.name,
+      author: "name",
+      title: "red green",
+      content: "content content",
+      date: currentDate,
+
     };
-    if (!!data.image) await Storage.put(data.name, image);
     await API.graphql({
-      query: createNoteMutation,
+      query: createArticleMutation,
       variables: { input: data },
     });
-    fetchNotes();
-    event.target.reset();
+    // fetchNotes();
+    // event.target.reset();
   }
 
   async function deleteNote({ id, name }) {
@@ -79,15 +65,9 @@ const LoginPage = ({ signOut }) => {
 
   return (    
     <View className="App">
-      <Heading level={1}>My Notes App</Heading>
-      <View as="form" margin="3rem 0" onSubmit={createNote}>
+      <Heading level={1}>My test App</Heading>
+      <View as="form" margin="3rem 0" onSubmit={createArticle}>
         <Flex direction="row" justifyContent="center">
-          <View 
-            name="image"
-            as="input"
-            type="file"
-            style={{ alignSelf: "end" }}
-          />  
           <TextField
             name="name"
             placeholder="Note Name"
@@ -105,7 +85,7 @@ const LoginPage = ({ signOut }) => {
             required
           />
           <Button class="bg-violet-600" type="submit" variation="primary">
-            Create Note
+            Create Article
           </Button>
         </Flex>
       </View>

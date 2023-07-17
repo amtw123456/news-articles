@@ -1,5 +1,6 @@
 {
   "AppSyncApiName": "newsarticles",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2023-07-17T03:39:21.154Z"
 }

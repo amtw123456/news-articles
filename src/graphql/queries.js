@@ -35,3 +35,39 @@ export const listNotes = /* GraphQL */ `
     }
   }
 `;
+export const getArticle = /* GraphQL */ `
+  query GetArticle($id: ID!) {
+    getArticle(id: $id) {
+      id
+      author
+      title
+      content
+      date
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listArticles = /* GraphQL */ `
+  query ListArticles(
+    $filter: ModelArticleFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listArticles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        author
+        title
+        content
+        date
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;

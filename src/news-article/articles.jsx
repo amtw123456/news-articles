@@ -8,10 +8,22 @@ import { BsPersonCircle } from "react-icons/bs";
 import { MdDateRange } from "react-icons/md";
 import { AiFillEye } from "react-icons/ai";
 import { AppContext } from './AppState';
+import { API, Storage } from 'aws-amplify';
+
+import { listArticles } from "../graphql/queries";
+import {
+  deleteArticle as deleteArticleMutation
+} from "../graphql/mutations";
+
+import { Auth } from 'aws-amplify';
 
 function ArticlePosts() {
   const {checkedIds, setCheckedIds} = useContext(AppContext);
-  const {articles} = useContext(AppContext);
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    fetchArticles();
+  }, []);
 
   const handleCheckboxChange = (id) => {
     const isChecked = checkedIds.includes(id);
@@ -29,10 +41,27 @@ function ArticlePosts() {
     setCheckedIds(checkedIds.filter((checkedId) => checkedId !== id));
   };
 
+  async function fetchArticles() {
+    const apiData = await API.graphql({ query: listArticles });
+    const articlesIsFromAPI = apiData.data.listArticles.items;
+    setArticles(articlesIsFromAPI);
+  }
+
+
+  async function deleteArticle({ id }) {
+    const newArticles = articles.filter((article) => article.id !== id);
+    setArticles(newArticles);
+    await API.graphql({
+      query: deleteArticleMutation,
+      variables: { input: { id } },
+    });
+  }
+
+
   // fetchData()
   return (
     <div>
-      {Articles.map((article) => (
+      {articles.map((article) => (
           <div className='news-articles-cards' key={article.id}>
             <ul>
               <div className='icon-container'>
@@ -117,7 +146,7 @@ function ArticlePosts() {
                                             </button>
                                           </li>
                                           <li>
-                                            <button onClick = {() => deleteSingleArticle(article.id)} className="articles-delete-button">
+                                            <button onClick = {() => deleteArticle(article)} className="articles-delete-button">
                                              Delete
                                             </button>
                                           </li>

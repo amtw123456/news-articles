@@ -12,6 +12,7 @@ import {
   View,
   withAuthenticator,
 } from '@aws-amplify/ui-react';
+import { Auth } from 'aws-amplify';
 
 function NewsArticles({ signOut }) {
     return (
