@@ -12,6 +12,7 @@ import {
   View,
   withAuthenticator,
 } from '@aws-amplify/ui-react';
+
 import { listNotes } from "../graphql/queries";
 import {
   createNote as createNoteMutation,
@@ -97,7 +98,7 @@ const LoginPage = ({ signOut }) => {
             variation="quiet"
             required
           />
-          <Button type="submit" variation="primary">
+          <Button class="bg-violet-600" type="submit" variation="primary">
             Create Note
           </Button>
         </Flex>
